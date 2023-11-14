@@ -9,20 +9,6 @@ import (
 	"github.com/pelletier/go-toml/v2"
 )
 
-// from the toml
-// name = "alifee's webring"
-// description = "For the glory of the Indieweb!"
-
-// [[websites]]
-// name = "localhost"
-// url = "https://localhost:8080"
-// description = "The root page"
-
-// [[websites]]
-// name = "a deeper page"
-// url = "https://localhost:8080/deeper"
-// description = "One page deep"
-
 type Website struct {
 	Name        string
 	Url         string
