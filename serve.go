@@ -79,8 +79,12 @@ func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
 
 	// if referrer is "{config.Root}/home", redirect to first page
 	if referrer == config.Root+"/home" {
-		// redirect to first page
-		http.Redirect(w, r, config.Websites[0].Url, http.StatusFound)
+		// redirect to first/last page
+		if next {
+			http.Redirect(w, r, config.Websites[0].Url, http.StatusFound)
+		} else {
+			http.Redirect(w, r, config.Websites[len(config.Websites)-1].Url, http.StatusFound)
+		}
 		return
 	}
 
