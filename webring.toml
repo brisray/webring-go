@@ -1,10 +1,11 @@
-Name = "alifee's webring"
+Name = "alifeee's webring"
 Description = "For the glory of the Indieweb!"
+Root = "http://localhost:8080"
 
 [[Websites]]
 Name = "localhost"
-Url = "http://localhost:8080"
-Description = "The root page"
+Url = "http://localhost:8080/firstpage.html"
+Description = "The first page"
 
 [[Websites]]
 Name = "a deeper page"
