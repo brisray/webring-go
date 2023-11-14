@@ -1,3 +1,6 @@
 # built files
 /serve.exe
 /serve
+
+# config file
+/webring.toml
