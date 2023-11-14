@@ -1,0 +1,12 @@
+Name = "alifee's webring"
+Description = "For the glory of the Indieweb!"
+
+[[Websites]]
+Name = "localhost"
+Url = "http://localhost:8080"
+Description = "The root page"
+
+[[Websites]]
+Name = "a deeper page"
+Url = "http://localhost:8080/deeper"
+Description = "One page deep"
