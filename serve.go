@@ -106,9 +106,8 @@ func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
 }
 
 func main() {
-	// config := readConfig()
-
 	http.Handle("/", http.FileServer(http.Dir("./static")))
+
 	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
 		configstr, filereaderr := os.ReadFile("webring.toml")
 		if filereaderr != nil {
@@ -130,6 +129,7 @@ func main() {
 		w.Header().Add("Content-Type", "text/html")
 		fmt.Fprint(w, htmlfile)
 	})
+
 	http.HandleFunc("/webring.js", func(w http.ResponseWriter, r *http.Request) {
 		configstr, filereaderr := os.ReadFile("webring.toml")
 		if filereaderr != nil {
@@ -163,21 +163,12 @@ func main() {
 		w.Header().Add("Content-Type", "application/javascript")
 		fmt.Fprint(w, jsfile)
 	})
+
 	http.HandleFunc("/next", func(w http.ResponseWriter, r *http.Request) {
 		nextOrPrevEndpoint(w, r, true)
 	})
 	http.HandleFunc("/previous", func(w http.ResponseWriter, r *http.Request) {
 		nextOrPrevEndpoint(w, r, false)
-	})
-
-	// debug
-	http.HandleFunc("/headers", func(w http.ResponseWriter, r *http.Request) {
-		// print request headers back to client
-		for name, values := range r.Header {
-			for _, value := range values {
-				fmt.Fprintf(w, "%v: %v\n", name, value)
-			}
-		}
 	})
 
 	fmt.Println("Server is running on http://localhost:8080")
