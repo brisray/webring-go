@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/aymerick/raymond"
 	"github.com/pelletier/go-toml/v2"
 )
 
@@ -31,6 +32,7 @@ type Website struct {
 type Config struct {
 	Name        string
 	Description string
+	Root        string
 	Websites    []Website
 }
 
@@ -74,6 +76,14 @@ func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
 		panic(filereaderr)
 	}
 	config := readConfig(configstr)
+
+	// if referrer is "{config.Root}/home", redirect to first page
+	if referrer == config.Root+"/home" {
+		// redirect to first page
+		http.Redirect(w, r, config.Websites[0].Url, http.StatusFound)
+		return
+	}
+
 	// find current page in config
 	index, finderr := findWebsiteIndexInList(config.Websites, referrer)
 	if finderr != nil {
@@ -99,11 +109,59 @@ func main() {
 	// config := readConfig()
 
 	http.Handle("/", http.FileServer(http.Dir("./static")))
-	http.HandleFunc("/webring.html", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "webring.html should be here")
+	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
+		configstr, filereaderr := os.ReadFile("webring.toml")
+		if filereaderr != nil {
+			panic(filereaderr)
+		}
+		config := readConfig(configstr)
+
+		// render html
+		htmltemplate, err := os.ReadFile("templates/homepage.html.template")
+		if err != nil {
+			panic(err)
+		}
+		htmlfile, err := raymond.Render(string(htmltemplate), config)
+		if err != nil {
+			panic(err)
+		}
+
+		// send response
+		w.Header().Add("Content-Type", "text/html")
+		fmt.Fprint(w, htmlfile)
 	})
 	http.HandleFunc("/webring.js", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "webring.js should be here")
+		configstr, filereaderr := os.ReadFile("webring.toml")
+		if filereaderr != nil {
+			panic(filereaderr)
+		}
+		config := readConfig(configstr)
+
+		// render html
+		htmltemplate, err := os.ReadFile("templates/webring.html.template")
+		if err != nil {
+			panic(err)
+		}
+		htmlfile, err := raymond.Render(string(htmltemplate), config)
+		if err != nil {
+			panic(err)
+		}
+
+		// render js
+		jstemplate, err := os.ReadFile("templates/webring.js.template")
+		if err != nil {
+			panic(err)
+		}
+		jsfile, err := raymond.Render(string(jstemplate), map[string]string{
+			"webring_html": htmlfile,
+		})
+		if err != nil {
+			panic(err)
+		}
+
+		// send response
+		w.Header().Add("Content-Type", "application/javascript")
+		fmt.Fprint(w, jsfile)
 	})
 	http.HandleFunc("/next", func(w http.ResponseWriter, r *http.Request) {
 		nextOrPrevEndpoint(w, r, true)

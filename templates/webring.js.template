@@ -1,0 +1,7 @@
+(function () {
+  const script = document.currentScript;
+
+  const webring = `{{{ webring_html }}}`;
+
+  script.insertAdjacentHTML("afterend", webring);
+})();

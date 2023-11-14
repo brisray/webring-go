@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ Name }}</title>
+    <!-- browser metas -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ Description }}" />
+
+    <!-- embed metas - https://ogp.me/ -->
+    <meta property="og:title" content="{{ Name }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ Root }}" />
+    <meta property="og:image" content="{{ Root }}/og-image.png" />
+    <meta property="og:description" content="{{ Description }}" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- favicon -->
+    <link rel="icon" href="{{ Root }}/favicon.ico" />
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="{{ Root }}/stylesheet.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>{{ Name }}</h1>
+    </header>
+
+    <main>
+      <p>{{ Description }}</p>
+      <h2>Sites</h2>
+      <ul>
+        {{#Websites}}
+        <li>
+          <a href="{{ URL }}">{{ Name }}</a>
+          <p>{{ Description }}</p>
+        </li>
+        {{/Websites}}
+      </ul>
+    </main>
+
+    <footer>
+      <script src="{{ Root }}/webring.js"></script>
+    </footer>
+  </body>
+</html>

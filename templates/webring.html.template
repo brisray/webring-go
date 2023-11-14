@@ -1,0 +1,39 @@
+<section class="webring">
+  <a class="previous" href="{{ Root }}/previous">Previous</a>
+  <a class="name" href="{{ Root }}/">{{ Name }}</a>
+  <p class="description">{{ Description }}</p>
+  <a class="next" href="{{ Root }}/next">Next</a>
+</section>
+<style scoped>
+  .webring {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: "previous name next" "previous description next";
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: min(100%, 30rem);
+    margin: 1rem auto;
+    font-family: sans-serif;
+  }
+  .webring .previous {
+    grid-area: previous;
+    margin-right: 1rem;
+  }
+  .webring .name {
+    grid-area: name;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .webring .description {
+    grid-area: description;
+    text-align: center;
+  }
+  .webring .next {
+    grid-area: next;
+    text-align: right;
+    margin-left: 1rem;
+  }
+</style>
