@@ -45,6 +45,11 @@
 
     <footer>
       <script src="{{ Root }}/webring.js"></script>
+      <style scoped>
+      .webring {
+        border: 1px solid white;
+      }
+      </style>
     </footer>
   </body>
 </html>
