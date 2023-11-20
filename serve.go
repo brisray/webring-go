@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/aymerick/raymond"
@@ -31,14 +32,19 @@ func readConfig(config_str []byte) Config {
 	return config
 }
 
-func findWebsiteIndexInList(websites []Website, url string) (int, error) {
-	// strip trailing slash
-	if url[len(url)-1] == '/' {
-		url = url[:len(url)-1]
+func isURLDomainTheSame(a, b string) bool {
+	a_url, a_err := url.Parse(a)
+	b_url, b_err := url.Parse(b)
+	if a_err != nil || b_err != nil {
+		return false
 	}
+	return a_url.Host == b_url.Host
+}
+
+func findWebsiteIndexInList(websites []Website, url string) (int, error) {
 	// find current page in config
 	for i, website := range websites {
-		if website.Url == url {
+		if isURLDomainTheSame(website.Url, url) {
 			return i, nil
 		}
 	}
