@@ -23,13 +23,13 @@ type Config struct {
 	Websites    []Website
 }
 
-func readConfig(config_str []byte) Config {
+func readConfig(config_str []byte) (Config, error) {
 	var config = Config{}
-	unmarshallerr := toml.Unmarshal(config_str, &config)
-	if unmarshallerr != nil {
-		panic(unmarshallerr)
+	err := toml.Unmarshal(config_str, &config)
+	if err != nil {
+		return config, err
 	}
-	return config
+	return config, nil
 }
 
 func isURLDomainTheSame(a, b string) bool {
@@ -67,7 +67,10 @@ func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
 	if filereaderr != nil {
 		panic(filereaderr)
 	}
-	config := readConfig(configstr)
+	config, err := readConfig(configstr)
+	if err != nil {
+		panic(err)
+	}
 
 	// if referrer is "{config.Root}/home", redirect to first page
 	if referrer == config.Root+"/home" {
@@ -106,11 +109,15 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		configstr, filereaderr := os.ReadFile("webring.toml")
-		if filereaderr != nil {
-			panic(filereaderr)
+		// load config
+		configstr, err := os.ReadFile("webring.toml")
+		if err != nil {
+			panic(err)
 		}
-		config := readConfig(configstr)
+		config, err := readConfig(configstr)
+		if err != nil {
+			panic(err)
+		}
 
 		// render html
 		htmltemplate, err := os.ReadFile("templates/homepage.html.template")
@@ -132,7 +139,10 @@ func main() {
 		if filereaderr != nil {
 			panic(filereaderr)
 		}
-		config := readConfig(configstr)
+		config, err := readConfig(configstr)
+		if err != nil {
+			panic(err)
+		}
 
 		// render html
 		htmltemplate, err := os.ReadFile("templates/webring.html.template")
