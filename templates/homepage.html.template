@@ -19,7 +19,7 @@
     <link rel="icon" href="{{ Root }}/favicon.ico" />
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="{{ Root }}/stylesheet.css" />
+    <link rel="stylesheet" href="{{ Root }}/static/stylesheet.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto"

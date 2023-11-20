@@ -102,9 +102,10 @@ func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
 }
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	// handle /static as fileserver
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		configstr, filereaderr := os.ReadFile("webring.toml")
 		if filereaderr != nil {
 			panic(filereaderr)
