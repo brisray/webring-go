@@ -4,3 +4,6 @@
 
 # config file
 /webring.toml
+
+# testing
+/a.out

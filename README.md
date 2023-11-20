@@ -24,6 +24,18 @@ go build ./serve.go
 ./serve # Linux
 ```
 
+### Test
+
+```bash
+go test
+```
+
+#### Generate and view coverage report (HTML)
+
+```bash
+go test -coverprofile="c.out"; go tool cover -html="c.out"
+```
+
 ## Endpoints
 
 This will run on a server, and any website that wants to participate can add themselves to the webring via a Pull Request, and put a webring at the bottom of their webpage.
