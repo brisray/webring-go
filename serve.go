@@ -41,41 +41,37 @@ func isURLDomainTheSame(a, b string) bool {
 	return a_url.Host == b_url.Host
 }
 
-func findWebsiteIndexInList(websites []Website, url string) (int, error) {
+func findWebsiteIndexInList(websites []Website, url string) int {
 	// find current page in config
 	for i, website := range websites {
 		if isURLDomainTheSame(website.Url, url) {
-			return i, nil
+			return i
 		}
 	}
-	return -1, fmt.Errorf("website not found in list")
+	return -1
 }
 
-func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
-	// get referrer
-	referrer := r.Header.Get("Referer")
-	if referrer == "" {
-		fmt.Fprintf(w, "no referrer")
-		return
-	}
-	// strip trailing slash
-	if referrer[len(referrer)-1] == '/' {
-		referrer = referrer[:len(referrer)-1]
-	}
-	// get config
-	configstr, filereaderr := os.ReadFile("webring.toml")
-	if filereaderr != nil {
-		panic(filereaderr)
+func nextOrPrev(w http.ResponseWriter, r *http.Request, nextOrPrev string) {
+	// load config
+	configstr, err := os.ReadFile("webring.toml")
+	if err != nil {
+		panic(err)
 	}
 	config, err := readConfig(configstr)
 	if err != nil {
 		panic(err)
 	}
 
-	// if referrer is "{config.Root}/home", redirect to first page
-	if referrer == config.Root+"/home" {
-		// redirect to first/last page
-		if next {
+	// get referer
+	referrer := r.Header.Get("Referer")
+	if referrer == "" {
+		fmt.Fprintf(w, "no referrer")
+		return
+	}
+
+	// if referer is "{config.Root}", redirect to first or last page
+	if isURLDomainTheSame(referrer, config.Root) {
+		if nextOrPrev == "next" {
 			http.Redirect(w, r, config.Websites[0].Url, http.StatusFound)
 		} else {
 			http.Redirect(w, r, config.Websites[len(config.Websites)-1].Url, http.StatusFound)
@@ -84,22 +80,25 @@ func nextOrPrevEndpoint(w http.ResponseWriter, r *http.Request, next bool) {
 	}
 
 	// find current page in config
-	index, finderr := findWebsiteIndexInList(config.Websites, referrer)
-	if finderr != nil {
+	index := findWebsiteIndexInList(config.Websites, referrer)
+
+	// if referer not in config, return error
+	if index == -1 {
 		fmt.Fprintf(w, "the site you came from is not in the webring!")
 		return
 	}
+
 	// find next page in config
-	var nextindex int
-	if next {
-		nextindex = (index + 1) % len(config.Websites)
+	var diff int
+	if nextOrPrev == "next" {
+		diff = 1
 	} else {
-		nextindex = (index - 1) % len(config.Websites)
+		diff = -1
 	}
-	for nextindex < 0 {
-		nextindex += len(config.Websites)
-	}
+
+	nextindex := (index + len(config.Websites) + diff) % len(config.Websites)
 	nextpage := config.Websites[nextindex]
+
 	// redirect to next page
 	http.Redirect(w, r, nextpage.Url, http.StatusFound)
 }
@@ -172,10 +171,10 @@ func main() {
 	})
 
 	http.HandleFunc("/next", func(w http.ResponseWriter, r *http.Request) {
-		nextOrPrevEndpoint(w, r, true)
+		nextOrPrev(w, r, "next")
 	})
 	http.HandleFunc("/previous", func(w http.ResponseWriter, r *http.Request) {
-		nextOrPrevEndpoint(w, r, false)
+		nextOrPrev(w, r, "previous")
 	})
 
 	fmt.Println("Server is running on http://localhost:8080")
