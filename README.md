@@ -1,13 +1,64 @@
 # Webring-Go
 
-An attempt to build a [webring] server in [Go]
-
-![Screenshot of example webring](https://github.com/alifeee/webring-go/assets/13833017/997b912d-4705-415d-9f87-b5d468f15b10)
+A [webring] server built with [Go]
 
 [webring]: https://indieweb.org/webring
 [Go]: https://go.dev/
 
-## Commands
+To add yourself to the webring, add your site to [`webring.toml`](./webring.toml) and create a Pull Request.
+
+## To include the webring on your site
+
+Firstly, you must be part of the webring, or the next/previous links will fail.
+
+### Simple
+
+Add `<script src="[root]/webring.js"></script>` where you want the webring to appear in the DOM. This will add HTML which will look like the following:
+
+![Screenshot of example webring](images/webring.png)
+
+You can style it via the `.webring` class (for the root element) and the `.previous`, `.name`, `description`, and `next` classes for the child elements.
+
+### More customisable
+
+The script above just adds the following HTML to the DOM, with templates replaced by the items in the [config](./webring.toml):
+
+```html
+<section class="webring">
+  <a class="previous" href="{{ Root }}/previous">Previous</a>
+  <a class="name" href="{{ Root }}/">{{ Name }}</a>
+  <p class="description">{{ Description }}</p>
+  <a class="next" href="{{ Root }}/next">Next</a>
+</section>
+```
+
+So long as you include links to:
+
+- homepage `/`
+- next `/next`
+- previous `/previous`
+
+...you can write the HTML and style it as you want.
+
+## Endpoints
+
+### `/webring.js`
+
+This should be included like `<script src="[root]/webring.js"></script>` where you want the webring to go. See <http://webring.alifeee.co.uk> for an example.
+
+### `/`
+
+This is the homepage for the webring. For example: <http://webring.alifeee.co.uk>
+
+### `/next`
+
+Given the header of the requesting site, returns a redirect to the next site in the ring.
+
+### `/previous`
+
+Given the header of the requesting site, returns a redirect to the previous site in the ring.
+
+## Development
 
 Requirements: Go 1.21.4
 
@@ -36,37 +87,9 @@ go test
 go test -coverprofile="c.out"; go tool cover -html="c.out"
 ```
 
-## Endpoints
+### Deploy on remote server
 
-This will run on a server, and any website that wants to participate can add themselves to the webring via a Pull Request, and put a webring at the bottom of their webpage.
-
-### `/webring.js`
-
-this should be included like `<script src="[root]/webring.js"></script>` where you want the webring to go. See [`http://server.alifeee.co.uk:8080/home`](http://server.alifeee.co.uk:8080/home) for an example.
-
-### `/home`
-
-This is the homepage for the webring. For example: [`http://server.alifeee.co.uk:8080/home`](http://server.alifeee.co.uk:8080/home)
-
-### `/next`
-
-Given the header of the requesting site, gets the next site in the ring
-
-### `/previous`
-
-Given the header of the requesting site, gets the previous site in the ring
-
-### Data
-
-There needs to be information about which sites are participating in the webring, and some metadata. This is in the form of a configuration file. For example, see [`arthena.json`].
-
-[`arthena.json`]: https://github.com/mldangelo/open-webring/blob/main/public/ring/arthena.json
-
-- `webring.toml` or `webring.json`
-
-## Deploy on remote server
-
-### Initial deployment
+#### Initial deployment
 
 ```bash
 ssh $USER@$SERVER
@@ -78,7 +101,6 @@ wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
 rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
 rm go1.21.4.linux-amd64.tar.gz
 # edit config
-cp webring.example.toml webring.toml
 nano webring.toml
 # set up tmux
 tmux new -s webring
@@ -89,7 +111,7 @@ go build serve.go
 # Ctrl+B, D to detach from tmux
 ```
 
-### Update deployment
+#### Update deployment
 
 ```bash
 ssh $USER@$SERVER
