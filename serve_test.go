@@ -87,14 +87,14 @@ func Test_findWebsiteInWebring(t *testing.T) {
 	config_str := []byte(workingConfig)
 	config, _ := readConfig(config_str)
 	// TEST 1: url is in list
-	index, _ := findWebsiteIndexInList(config.Websites, "https://randomurl.com")
+	index := findWebsiteIndexInList(config.Websites, "https://randomurl.com")
 	assert(t, index == 0, "findWebsiteInWebring() = %v, want %v", index, 0)
 	// TEST 2: url has trailing slash
-	index, _ = findWebsiteIndexInList(config.Websites, "https://randomurl.com/")
+	index = findWebsiteIndexInList(config.Websites, "https://randomurl.com/")
 	assert(t, index == 0, "findWebsiteInWebring() = %v, want %v", index, 0)
 	// TEST 3: url not in list
-	_, err := findWebsiteIndexInList(config.Websites, "https://notfound.com")
-	assert(t, err != nil, "findWebsiteInWebring() = %v, want %v", err, "error")
+	index = findWebsiteIndexInList(config.Websites, "https://notfound.com")
+	assert(t, index == -1, "findWebsiteInWebring() = %v, want %v", index, -1)
 }
 
 func Test_isURLDomainTheSame(t *testing.T) {
