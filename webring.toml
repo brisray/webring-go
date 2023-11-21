@@ -1,0 +1,13 @@
+Name = "alifeee's webring"
+Description = "For the glory of the Indieweb!"
+Root = "http://webring.alifeee.co.uk"
+
+[[Websites]]
+Name = "alifeee's website"
+Url = "https://alifeee.co.uk"
+Description = "alifeee's personal website"
+
+[[Websites]]
+Name = "alifeee's blog"
+Url = "https://blog.alifeee.co.uk"
+Description = "alifeee's personal blog"

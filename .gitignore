@@ -2,8 +2,5 @@
 /serve.exe
 /serve
 
-# config file
-/webring.toml
-
 # testing
 /c.out
