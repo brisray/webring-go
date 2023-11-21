@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"reflect"
 	"runtime"
@@ -59,7 +60,6 @@ url = "https://digging.allaboutdwarves.co.uk/home"
 description = "Dig! Dig! Dig!"
 `
 
-// test readConfig function with a string
 func TestReadConfig(t *testing.T) {
 	expected_config := Config{
 		Name:        "alifee's webring",
@@ -81,6 +81,13 @@ func TestReadConfig(t *testing.T) {
 	config_str := []byte(workingConfig)
 	config, _ := readConfig(config_str)
 	assert(t, reflect.DeepEqual(config, expected_config), "readConfig() = %v, want %v", config, expected_config)
+}
+
+func TestReadRealConfig(t *testing.T) {
+	config_str, err := os.ReadFile("webring.toml")
+	ok(t, err)
+	_, err = readConfig(config_str)
+	ok(t, err)
 }
 
 func Test_findWebsiteInWebring(t *testing.T) {
