@@ -20,8 +20,6 @@ type Config struct {
 	Name        string
 	Description string
 	Root        string
-	CertFile    string
-	KeyFile     string
 	Websites    []Website
 }
 
