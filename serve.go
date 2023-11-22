@@ -179,24 +179,6 @@ func main() {
 		nextOrPrev(w, r, "previous")
 	})
 
-	// run on https if cert and key are present
-	configstr, filereaderr := os.ReadFile("webring.toml")
-	if filereaderr != nil {
-		panic(filereaderr)
-	}
-	config, err := readConfig(configstr)
-	if err != nil {
-		panic(err)
-	}
-
-	_, certerr := os.Stat(config.CertFile)
-	_, keyerr := os.Stat(config.KeyFile)
-	if certerr == nil && keyerr == nil {
-		fmt.Println("Server is running on https://localhost:8080")
-		http.ListenAndServeTLS(":8080", "", "key.pem", nil)
-		return
-	} else {
-		fmt.Println("Server is running on http://localhost:8080")
-		http.ListenAndServe(":8080", nil)
-	}
+	fmt.Println("Server is running on http://localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }
