@@ -193,7 +193,7 @@ func main() {
 	_, keyerr := os.Stat(config.KeyFile)
 	if certerr == nil && keyerr == nil {
 		fmt.Println("Server is running on https://localhost:8080")
-		http.ListenAndServeTLS(":8080", config.CertFile, config.KeyFile, nil)
+		http.ListenAndServeTLS(":8080", "", "key.pem", nil)
 		return
 	} else {
 		fmt.Println("Server is running on http://localhost:8080")
