@@ -1,8 +1,6 @@
 Name = "alifeee's webring"
 Description = "For the glory of the Indieweb!"
 Root = "http://webring.alifeee.co.uk"
-CertFile = "/etc/letsencrypt/live/webring.alifeee.co.uk/fullchain.pem"
-KeyFile = "/etc/letsencrypt/live/webring.alifeee.co.uk/privkey.pem"
 
 [[Websites]]
 Name = "alifeee's website"
