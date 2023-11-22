@@ -11,3 +11,8 @@ Description = "alifeee's personal website"
 Name = "alifeee's blog"
 Url = "https://blog.alifeee.co.uk"
 Description = "alifeee's personal blog"
+
+[[Websites]]
+Name = "neilgaryallen's blog"
+Url = "https://neilgaryallen.dev"
+Description = "neil gary allen takes things apart"
