@@ -1,6 +1,6 @@
 Name = "alifeee's webring"
 Description = "For the glory of the Indieweb!"
-Root = "http://webring.alifeee.co.uk"
+Root = "https://webring.alifeee.co.uk"
 
 [[Websites]]
 Name = "alifeee's website"
