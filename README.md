@@ -13,7 +13,7 @@ Firstly, you must be part of the webring, or the next/previous links will fail.
 
 ### Simple
 
-Add `<script src="[root]/webring.js"></script>` where you want the webring to appear in the DOM. This will add HTML which will look like the following:
+Add `<script src="https://webring.alifeee.co.uk/webring.js"></script>` where you want the webring to appear in the DOM. This will add HTML which will look like the following:
 
 ![Screenshot of example webring](images/webring.png)
 
