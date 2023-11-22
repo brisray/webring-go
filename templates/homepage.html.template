@@ -36,7 +36,7 @@
       <ul>
         {{#Websites}}
         <li>
-          <a href="{{ URL }}">{{ Name }}</a>
+          <a href="{{ Url }}">{{ Name }}</a>
           <p>{{ Description }}</p>
         </li>
         {{/Websites}}
@@ -46,9 +46,9 @@
     <footer>
       <script src="{{ Root }}/webring.js"></script>
       <style scoped>
-      .webring {
-        border: 1px solid white;
-      }
+        .webring {
+          border: 1px solid white;
+        }
       </style>
     </footer>
   </body>
