@@ -36,6 +36,13 @@
       <ul>
         {{#Websites}}
         <li>
+          <img
+            class="profile"
+            src="{{ Image }}"
+            alt="{{ Name }}"
+            height="256px"
+            width="256px"
+          />
           <a href="{{ Url }}">{{ Name }}</a>
           <p>{{ Description }}</p>
         </li>
@@ -48,6 +55,11 @@
       <style scoped>
         .webring {
           border: 1px solid white;
+        }
+        .profile {
+          border-radius: 10%;
+          height: 1rem;
+          width: 1rem;
         }
       </style>
     </footer>

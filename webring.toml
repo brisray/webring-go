@@ -5,9 +5,11 @@ Root = "https://webring.alifeee.co.uk"
 [[Websites]]
 Name = "alifeee's website!!!"
 Url = "https://alifeee.co.uk"
+Image = "https://alifeee.co.uk/og-image.jpg"
 Description = "a blog! simulations! tools! data! bookmarks! a collection of madness from the mind of alifeee"
 
 [[Websites]]
 Name = "neilgaryallen's blog"
 Url = "https://neilgaryallen.dev"
+Image = "https://neilgaryallen.dev/neil.jpg"
 Description = "neil gary allen takes things apart"

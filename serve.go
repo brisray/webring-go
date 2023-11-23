@@ -14,6 +14,7 @@ type Website struct {
 	Name        string
 	Url         string
 	Description string
+	Image       string
 }
 
 type Config struct {
