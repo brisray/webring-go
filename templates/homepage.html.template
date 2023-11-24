@@ -19,7 +19,6 @@
     <link rel="icon" href="{{ Root }}/favicon.ico" />
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="{{ Root }}/static/stylesheet.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto"
@@ -28,40 +27,220 @@
   <body>
     <header>
       <h1>{{ Name }}</h1>
+      <p>{{ Description }}</p>
     </header>
 
     <main>
-      <p>{{ Description }}</p>
-      <h2>Sites</h2>
-      <ul>
-        {{#Websites}}
-        <li>
-          <img
-            class="profile"
-            src="{{ Image }}"
-            alt="{{ Name }}"
-            height="256px"
-            width="256px"
-          />
-          <a href="{{ Url }}">{{ Name }}</a>
-          <p>{{ Description }}</p>
-        </li>
-        {{/Websites}}
-      </ul>
+      <div id="grid">
+        <section id="what-is">
+          <h2>What is a webring?</h2>
+        </section>
+        <section id="webring">
+          <script src="./webring.js"></script>
+        </section>
+        <section id="webring-graph">
+          <ul>
+            {{#Websites}}
+            <li>
+              <img
+                src="{{ Image }}"
+                alt="{{ Name }}"
+                width="256px"
+                height="256px"
+              />
+            </li>
+            {{/Websites}}
+          </ul>
+        </section>
+        <section id="sites">
+          <h2>Sites</h2>
+          <ul>
+            {{#Websites}}
+            <li>
+              <div class="headline">
+                <img
+                  class="profile"
+                  src="{{ Image }}"
+                  alt="{{ Name }}"
+                  height="256px"
+                  width="256px"
+                />
+                <a href="{{ Url }}">{{ Name }}</a>
+              </div>
+              <p>{{ Description }}</p>
+            </li>
+            {{/Websites}}
+          </ul>
+        </section>
+      </div>
     </main>
-
-    <footer>
-      <script src="{{ Root }}/webring.js"></script>
-      <style scoped>
-        .webring {
-          border: 1px solid white;
-        }
-        .profile {
-          border-radius: 10%;
-          height: 1rem;
-          width: 1rem;
-        }
-      </style>
-    </footer>
   </body>
+  <style scoped>
+    /* general styling */
+    * {
+      box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Josefin Sans", sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Roboto", sans-serif;
+      background-color: #63a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* header */
+    header {
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      font-style: italic;
+      font-family: Georgia, serif;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px dashed var(--border-colour);
+    }
+    header a {
+      text-decoration: none;
+    }
+    header a:visited {
+      color: inherit;
+    }
+
+    /* main */
+    main {
+      flex-grow: 1;
+      background-color: #222;
+      margin: 1rem 1rem;
+      padding: 1rem;
+      color: white;
+      display: flex;
+      justify-content: center;
+    }
+    a {
+      color: #fca3ff;
+    }
+    a:visited {
+      color: #fca3ff;
+    }
+    a:hover {
+      color: rgb(254, 213, 255);
+    }
+    #grid {
+      max-width: 60rem;
+      display: grid;
+      grid-template-areas:
+        "what-is sites"
+        "webring sites"
+        "webring-graph sites";
+      grid-template-columns: 2fr 3fr;
+      grid-template-rows: auto auto 1fr;
+      grid-gap: 1rem;
+      column-gap: 5rem;
+      justify-content: start;
+    }
+    #what-is {
+      grid-area: what-is;
+    }
+    #webring {
+      grid-area: webring;
+    }
+    #webring-graph {
+      grid-area: webring-graph;
+    }
+    #sites {
+      grid-area: sites;
+    }
+    @media (max-width: 800px) {
+      #grid {
+        grid-template-areas:
+          "what-is"
+          "webring"
+          "webring-graph"
+          "sites";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 1fr;
+        column-gap: 0;
+      }
+    }
+    /* what is section */
+    /* webring embed */
+    .webring {
+      border: 1px solid white;
+    }
+
+    /* graph section */
+    #webring-graph ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #webring-graph li {
+      margin: 0.5rem;
+    }
+    #webring-graph img {
+      height: 10rem;
+      width: 10rem;
+      border-radius: 10%;
+    }
+
+    /* sites section */
+    #sites ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+    #sites li {
+      margin: 2rem 0;
+      position: relative;
+    }
+    #sites .headline {
+      display: flex;
+      align-items: center;
+    }
+    #sites .profile {
+      border-radius: 10%;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
+    }
+    #sites li::before {
+      content: "";
+      position: absolute;
+      background-color: #63a;
+      width: 5px;
+      height: 150%;
+      left: -20px;
+      top: -10px;
+      display: block;
+    }
+    #sites li::after {
+      content: "";
+      position: absolute;
+      background-color: #222;
+      width: 20px;
+      height: 20px;
+      left: -22px;
+      top: -20px;
+      display: block;
+      padding: 5px 0;
+    }
+    #sites li:nth-child(1)::after {
+      content: "1";
+    }
+    #sites li:nth-child(2)::after {
+      content: "2";
+    }
+  </style>
 </html>
