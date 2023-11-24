@@ -11,6 +11,7 @@
     grid-template-areas: "previous name next" "previous description next";
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     border: 1px solid black;
     border-radius: 1rem;
     padding: 1rem;
@@ -30,6 +31,7 @@
   .webring .description {
     grid-area: description;
     text-align: center;
+    margin: 0;
   }
   .webring .next {
     grid-area: next;
