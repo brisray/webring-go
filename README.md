@@ -5,21 +5,35 @@ A [webring] server built with [Go]
 [webring]: https://indieweb.org/webring
 [Go]: https://go.dev/
 
-To add yourself to the webring, add your site to [`webring.toml`](./webring.toml) and create a Pull Request.
+## What is a webring?
 
-## To include the webring on your site
+See [`webring.alifeee.co.uk`] for more information and links, but briefly: A webring is a bit of HTML that a group of people put on their websites, which you can click through to navigate between the sites. It is a way of discovering content on the web without search engines, advertising, SEO, and all the things which have made the Internet a... *more corporate* place.
 
-Firstly, you must be part of the webring, or the next/previous links will fail.
+[`webring.alifeee.co.uk`]: https://webring.alifeee.co.uk/
 
-### Simple
+## How to join the webring
 
-Add `<script src="https://webring.alifeee.co.uk/webring.js"></script>` where you want the webring to appear in the DOM. This will add HTML which will look like the following:
+1. Add your site to [`webring.toml`](./webring.toml) and create a Pull Request.
 
-![Screenshot of example webring](images/webring.png)
+    ```toml
+    [[Websites]]
+    Name = "your website here!"
+    Url = "https://your.website"
+    Image = "https://your.website/image.png"
+    Description = "your description!"
+    ```
 
-You can style it via the `.webring` class (for the root element) and the `.previous`, `.name`, `description`, and `next` classes for the child elements.
+2. Add the webring to your site!
 
-### More customisable
+    Put `<script src="https://webring.alifeee.co.uk/webring.js"></script>` where you want the webring to appear on your site. The webring HTML will be added here!
+
+    ![Screenshot of example webring](images/webring.png)
+
+3. Style the webring how you want!
+
+    You can style it via the `.webring` class (for the root element) and the `.previous`, `.name`, `description`, and `next` classes for the child elements. Inspect the webring HTML for more information, or see the [webring.html template](./templates/webring.html.template).
+
+## More customisation
 
 The script above just adds the following HTML to the DOM, with templates replaced by the items in the [config](./webring.toml):
 
