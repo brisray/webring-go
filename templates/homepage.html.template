@@ -11,7 +11,7 @@
     <meta property="og:title" content="{{ Name }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ Root }}" />
-    <meta property="og:image" content="{{ Root }}/og-image.png" />
+    <meta property="og:image" content="{{ Root }}/static/og-image.png" />
     <meta property="og:description" content="{{ Description }}" />
     <meta property="og:locale" content="en_GB" />
 
