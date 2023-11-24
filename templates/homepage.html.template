@@ -58,9 +58,9 @@
             >.
           </p>
           <p>
-            Below is a working example of this webring! In theory, every site on
-            the right includes this somewhere so you can navigate through all of
-            them using this webring.
+            Below/right is a working example of this webring! In theory, every
+            site on the right includes this somewhere so you can navigate
+            through all of them using this webring.
           </p>
           <p>
             This is an open source project, written as a web server in Go.
@@ -68,9 +68,6 @@
               >See on GitHub</a
             >.
           </p>
-        </section>
-        <section id="webring">
-          <script src="./webring.js"></script>
         </section>
         <section id="webring-graph">
           <h2>Graph</h2>
@@ -100,6 +97,10 @@
             </li>
             {{/Websites}}
           </ul>
+        </section>
+        <section id="webring">
+          <h2>Webring Example</h2>
+          <script src="./webring.js"></script>
         </section>
         <section id="sites">
           <h2>Sites</h2>
@@ -192,16 +193,19 @@
     a:hover {
       color: rgb(254, 213, 255);
     }
+    h2 {
+      text-align: center;
+    }
     #grid {
       max-width: 60rem;
       display: grid;
       grid-template-areas:
+        "what-is webring"
         "what-is sites"
-        "webring sites"
         "webring-graph sites";
       grid-template-columns: 2fr 3fr;
       grid-template-rows: auto auto 1fr;
-      grid-gap: 1rem;
+
       column-gap: 5rem;
       justify-content: start;
     }
