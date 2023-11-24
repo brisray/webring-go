@@ -127,6 +127,7 @@
       padding: 0;
       font-family: "Roboto", sans-serif;
       font-family: "hockey", "Josefin Sans", sans-serif;
+      font-size: 1.5rem;
       background-color: #63a;
       min-height: 100vh;
       display: flex;
