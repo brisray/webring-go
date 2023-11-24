@@ -5,11 +5,6 @@
   <a class="next" href="{{ Root }}/next">Next</a>
 </section>
 <style scoped>
-  @font-face {
-    font-family: "hockey";
-    src: url("{{ Root }}/fonts/hockey.woff");
-  }
-
   .webring {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
