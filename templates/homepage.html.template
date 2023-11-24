@@ -74,6 +74,14 @@
         </section>
         <section id="webring-graph">
           <h2>Graph</h2>
+          <p>
+            This section will be a
+            <a
+              href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)"
+              target="_blank"
+              >graph</a
+            >. I have lofty goals.
+          </p>
           <ul>
             {{#Websites}}
             <li>
@@ -216,6 +224,9 @@
       }
     }
     /* what is section */
+    #what-is {
+      text-align: center;
+    }
     /* webring embed */
     .webring {
       border: 1px solid white;
@@ -234,9 +245,12 @@
       margin: 0.5rem;
     }
     #webring-graph img {
-      height: 10rem;
-      width: 10rem;
+      height: 5rem;
+      width: 5rem;
       border-radius: 10%;
+    }
+    #webring-graph img:hover {
+      border: 2px solid white;
     }
 
     /* sites section */
