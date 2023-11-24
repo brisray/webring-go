@@ -27,7 +27,7 @@
   <body>
     <header>
       <h1>{{ Name }}</h1>
-      <p>{{ Description }}</p>
+      <span>{{ Description }}</span>
     </header>
 
     <main>
@@ -104,6 +104,12 @@
         </section>
       </div>
     </main>
+    <footer>
+      font:
+      <a href="http://fonts.tom7.com/fonts98.html" target="_blank">
+        Hockey is Lif by tom7
+      </a>
+    </footer>
   </body>
   <style scoped>
     /* general styling */
@@ -125,16 +131,17 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     /* header */
     header {
       text-align: center;
       position: relative;
+      color: white;
     }
     header h1 {
-      padding-bottom: 0.25rem;
-      border-bottom: 1px dashed var(--border-colour);
+      border-bottom: 2px dashed white;
     }
     header a {
       text-decoration: none;
@@ -270,6 +277,14 @@
     }
     #sites li:nth-child(2)::after {
       content: "2";
+    }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 0 0 1rem;
+      color: white;
+      width: 100%;
     }
   </style>
 </html>
