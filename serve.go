@@ -104,19 +104,9 @@ func nextOrPrev(w http.ResponseWriter, r *http.Request, nextOrPrev string) {
 	http.Redirect(w, r, nextpage.Url, http.StatusFound)
 }
 
-func addCORS(fs http.Handler) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// get referer
-		referrer := r.Header.Get("Referer")
-		w.Header().Add("Access-Control-Allow-Origin", referrer)
-		fs.ServeHTTP(w, r)
-	}
-}
-
 func main() {
 	// handle /static as fileserver
-	fs := http.StripPrefix("/static/", http.FileServer(http.Dir("static")))
-	http.Handle("/static/", addCORS(fs))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// load config
