@@ -16,7 +16,7 @@
     <meta property="og:locale" content="en_GB" />
 
     <!-- favicon -->
-    <link rel="icon" href="{{ Root }}/favicon.ico" />
+    <link rel="icon" href="{{ Root }}/static/favicon.ico" />
 
     <!-- stylesheets -->
     <link
