@@ -111,9 +111,11 @@
     </main>
     <footer>
       font:
-      <a href="http://fonts.tom7.com/fonts98.html" target="_blank">
-        Hockey is Lif by tom7
-      </a>
+      <a href="http://fonts.tom7.com/fonts98.html" target="_blank"
+        >Hockey is Lif by tom7</a
+      >
+      source:
+      <a href="https://github.com/alifeee/webring-go" target="_blank">GitHub</a>
     </footer>
   </body>
   <style scoped>
