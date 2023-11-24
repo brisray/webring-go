@@ -7,7 +7,7 @@
 <style scoped>
   @font-face {
     font-family: "hockey";
-    src: url("{{ Root }}/fonts/hockey.ttf");
+    src: url("{{ Root }}/fonts/hockey.woff");
   }
 
   .webring {
