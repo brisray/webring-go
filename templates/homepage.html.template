@@ -34,6 +34,36 @@
       <div id="grid">
         <section id="what-is">
           <h2>What is a webring?</h2>
+          <p>
+            A webring is a little bit of HTML that a group of people put on
+            their websites, which you can click through to navigate between the
+            sites. It is a way of discovering content on the web without search
+            engines, advertising, SEO, and all the things which have made the
+            Internet a... <em>more corporate</em> place. Even the name "webring"
+            is
+            <a
+              href="https://hover.blog/what-ever-happened-to-webrings/"
+              target="_blank"
+              >technically trademarked</a
+            >.
+          </p>
+          <p>
+            For more information see the
+            <a href="https://indieweb.org/webring" target="_blank"
+              >Indieweb's page </a
+            >.
+          </p>
+          <p>
+            Below is a working example of this webring! In theory, every site on
+            the right includes this somewhere so you can navigate through all of
+            them using this webring.
+          </p>
+          <p>
+            This is an open source project, written as a web server in Go.
+            <a href="https://github.com/alifeee/webring-go" target="_blank"
+              >See on GitHub</a
+            >.
+          </p>
         </section>
         <section id="webring">
           <script src="./webring.js"></script>
