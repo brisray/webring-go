@@ -33,7 +33,7 @@
     <main>
       <div id="grid">
         <section id="what-is">
-          <h2>What is a webring?</h2>
+          <h2 id="what-is-a-webring">What is a webring?</h2>
           <p>
             A webring is a little bit of HTML that a group of people put on
             their websites, which you can click through to navigate between the
@@ -70,7 +70,7 @@
           </p>
         </section>
         <section id="webring-graph">
-          <h2>Graph</h2>
+          <h2 id="graph">Graph</h2>
           <p>
             This section
             <a
@@ -99,11 +99,11 @@
           </ul>
         </section>
         <section id="webring">
-          <h2>Webring Example</h2>
+          <h2 id="webring-example">Webring Example</h2>
           <script src="./webring.js"></script>
         </section>
         <section id="sites">
-          <h2>Sites</h2>
+          <h2 id="sites-list">Sites</h2>
           <ul>
             {{#Websites}}
             <li>
