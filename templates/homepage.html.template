@@ -23,6 +23,221 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Josefin+Sans|Roboto"
     />
+
+    <!-- style -->
+    <style>
+      /* general styling */
+      * {
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: "hockey";
+        src: url("./static/hockey.woff");
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+        font-family: "hockey", "Josefin Sans", sans-serif;
+        font-size: 1.5rem;
+        background-color: #63a;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* header */
+      header {
+        text-align: center;
+        position: relative;
+        color: white;
+      }
+      header h1 {
+        border-bottom: 2px dashed white;
+      }
+      header a {
+        text-decoration: none;
+      }
+      header a:visited {
+        color: inherit;
+      }
+
+      /* main */
+      main {
+        flex-grow: 1;
+        background-color: #222;
+        margin: 1rem 1rem;
+        padding: 1rem;
+        color: white;
+        display: flex;
+        justify-content: center;
+        border-radius: 1rem;
+      }
+      a {
+        color: #fca3ff;
+      }
+      a:visited {
+        color: #fca3ff;
+      }
+      a:hover {
+        color: rgb(254, 213, 255);
+      }
+      h2 {
+        text-align: center;
+      }
+      #grid {
+        max-width: 60rem;
+        display: grid;
+        grid-template-areas:
+          "what-is webring"
+          "what-is sites"
+          "webring-graph sites";
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: auto auto 1fr;
+
+        column-gap: 5rem;
+        justify-content: start;
+      }
+      #what-is {
+        grid-area: what-is;
+      }
+      #webring {
+        grid-area: webring;
+      }
+      #webring-graph {
+        grid-area: webring-graph;
+      }
+      #sites {
+        grid-area: sites;
+      }
+      @media (max-width: 800px) {
+        #grid {
+          grid-template-areas:
+            "what-is"
+            "webring"
+            "webring-graph"
+            "sites";
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto auto 1fr;
+          column-gap: 0;
+        }
+      }
+      /* what is section */
+      #what-is {
+        text-align: center;
+      }
+      /* webring embed */
+      section.webring {
+        border: 1px solid white;
+      }
+
+      /* graph section */
+      #webring-graph ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #webring-graph li {
+        margin: 0.5rem;
+      }
+      #webring-graph img {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 10%;
+      }
+      #webring-graph img:hover {
+        border: 2px solid white;
+      }
+
+      /* sites section */
+      #sites ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        margin-left: 30px;
+      }
+
+      #sites li {
+        margin: 2rem 0;
+        position: relative;
+      }
+      #sites .headline {
+        display: flex;
+        align-items: center;
+      }
+      #sites .profile {
+        border-radius: 10%;
+        height: 2rem;
+        width: 2rem;
+        margin-right: 1rem;
+      }
+      #sites li::before {
+        content: "";
+        position: absolute;
+        background-color: #63a;
+        width: 5px;
+        height: 150%;
+        left: -20px;
+        top: -10px;
+        display: block;
+      }
+      #sites li::after {
+        content: "n";
+        position: absolute;
+        background-color: #222;
+        width: 20px;
+        height: 20px;
+        left: -22px;
+        top: -20px;
+        display: block;
+        padding: 5px 0 10px;
+      }
+      #sites li:nth-child(1)::after {
+        content: "1";
+      }
+      #sites li:nth-child(2)::after {
+        content: "2";
+      }
+      #sites li:nth-child(3)::after {
+        content: "3";
+      }
+      #sites li:nth-child(4)::after {
+        content: "4";
+      }
+      #sites li:nth-child(5)::after {
+        content: "5";
+      }
+      #sites li:nth-child(6)::after {
+        content: "6";
+      }
+      #sites li:nth-child(7)::after {
+        content: "7";
+      }
+      #sites li:nth-child(8)::after {
+        content: "8";
+      }
+      #sites li:nth-child(9)::after {
+        content: "9";
+      }
+      #sites li:nth-child(10)::after {
+        content: "10";
+      }
+
+      /* footer */
+      footer {
+        text-align: center;
+        padding: 0 0 1rem;
+        color: white;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -133,217 +348,4 @@
       <a href="https://github.com/alifeee/webring-go" target="_blank">GitHub</a>
     </footer>
   </body>
-  <style scoped>
-    /* general styling */
-    * {
-      box-sizing: border-box;
-    }
-
-    @font-face {
-      font-family: "hockey";
-      src: url("./static/hockey.woff");
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Roboto", sans-serif;
-      font-family: "hockey", "Josefin Sans", sans-serif;
-      font-size: 1.5rem;
-      background-color: #63a;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* header */
-    header {
-      text-align: center;
-      position: relative;
-      color: white;
-    }
-    header h1 {
-      border-bottom: 2px dashed white;
-    }
-    header a {
-      text-decoration: none;
-    }
-    header a:visited {
-      color: inherit;
-    }
-
-    /* main */
-    main {
-      flex-grow: 1;
-      background-color: #222;
-      margin: 1rem 1rem;
-      padding: 1rem;
-      color: white;
-      display: flex;
-      justify-content: center;
-      border-radius: 1rem;
-    }
-    a {
-      color: #fca3ff;
-    }
-    a:visited {
-      color: #fca3ff;
-    }
-    a:hover {
-      color: rgb(254, 213, 255);
-    }
-    h2 {
-      text-align: center;
-    }
-    #grid {
-      max-width: 60rem;
-      display: grid;
-      grid-template-areas:
-        "what-is webring"
-        "what-is sites"
-        "webring-graph sites";
-      grid-template-columns: 2fr 3fr;
-      grid-template-rows: auto auto 1fr;
-
-      column-gap: 5rem;
-      justify-content: start;
-    }
-    #what-is {
-      grid-area: what-is;
-    }
-    #webring {
-      grid-area: webring;
-    }
-    #webring-graph {
-      grid-area: webring-graph;
-    }
-    #sites {
-      grid-area: sites;
-    }
-    @media (max-width: 800px) {
-      #grid {
-        grid-template-areas:
-          "what-is"
-          "webring"
-          "webring-graph"
-          "sites";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto 1fr;
-        column-gap: 0;
-      }
-    }
-    /* what is section */
-    #what-is {
-      text-align: center;
-    }
-    /* webring embed */
-    .webring {
-      border: 1px solid white;
-    }
-
-    /* graph section */
-    #webring-graph ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    #webring-graph li {
-      margin: 0.5rem;
-    }
-    #webring-graph img {
-      height: 5rem;
-      width: 5rem;
-      border-radius: 10%;
-    }
-    #webring-graph img:hover {
-      border: 2px solid white;
-    }
-
-    /* sites section */
-    #sites ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      position: relative;
-      margin-left: 30px;
-    }
-
-    #sites li {
-      margin: 2rem 0;
-      position: relative;
-    }
-    #sites .headline {
-      display: flex;
-      align-items: center;
-    }
-    #sites .profile {
-      border-radius: 10%;
-      height: 2rem;
-      width: 2rem;
-      margin-right: 1rem;
-    }
-    #sites li::before {
-      content: "";
-      position: absolute;
-      background-color: #63a;
-      width: 5px;
-      height: 150%;
-      left: -20px;
-      top: -10px;
-      display: block;
-    }
-    #sites li::after {
-      content: "n";
-      position: absolute;
-      background-color: #222;
-      width: 20px;
-      height: 20px;
-      left: -22px;
-      top: -20px;
-      display: block;
-      padding: 5px 0 10px;
-    }
-    #sites li:nth-child(1)::after {
-      content: "1";
-    }
-    #sites li:nth-child(2)::after {
-      content: "2";
-    }
-    #sites li:nth-child(3)::after {
-      content: "3";
-    }
-    #sites li:nth-child(4)::after {
-      content: "4";
-    }
-    #sites li:nth-child(5)::after {
-      content: "5";
-    }
-    #sites li:nth-child(6)::after {
-      content: "6";
-    }
-    #sites li:nth-child(7)::after {
-      content: "7";
-    }
-    #sites li:nth-child(8)::after {
-      content: "8";
-    }
-    #sites li:nth-child(9)::after {
-      content: "9";
-    }
-    #sites li:nth-child(10)::after {
-      content: "10";
-    }
-
-    /* footer */
-    footer {
-      text-align: center;
-      padding: 0 0 1rem;
-      color: white;
-      width: 100%;
-    }
-  </style>
 </html>
