@@ -13,3 +13,9 @@ Name = "neilgaryallen's blog"
 Url = "https://neilgaryallen.dev"
 Image = "https://neilgaryallen.dev/neil.jpg"
 Description = "neil gary allen takes things apart"
+
+[[Websites]]
+Name = "Alex Adler - a project"
+Url = "https://alex-adler.github.io/"
+Image = "https://alex-adler.github.io/favicon/favicon.svg"
+Description = "Engineering for the near future"
