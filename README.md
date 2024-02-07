@@ -116,24 +116,22 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
 rm go1.21.4.linux-amd64.tar.gz
 # edit config
 nano webring.toml
-# set up tmux
-tmux new -s webring
-cd ~/go/webring
-# build and execute
-go build serve.go
-./serve
-# Ctrl+B, D to detach from tmux
+
+# set up service
+cp webring.service /etc/systemd/system/webring.service
+sudo systemctl enable webring.service
+sudo systemctl start webring.service
+sudo systemctl status webring.service
 ```
 
 #### Update deployment
 
 ```bash
 ssh $USER@$SERVER
-tmux ls
-tmux attach -t webring
-# send ctrl+C
 git pull
 go build serve.go
-./serve
-# Ctrl+B, D to detach from tmux
+cp webring.service /etc/systemd/system/webring.service
+sudo systemctl enable webring.service
+sudo systemctl start webring.service
+sudo systemctl status webring.service
 ```
