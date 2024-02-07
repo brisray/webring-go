@@ -1,0 +1,15 @@
+[Unit]
+Description=Webring using Go and TOML
+After=network.target
+
+[Service]
+ExecStart=/root/go/webring-go/serve
+WorkingDirectory=/root/go/webring-go
+
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
+
