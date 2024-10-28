@@ -19,3 +19,9 @@ Name = "Alex Adler - a project"
 Url = "https://adler.robertoholm.es/"
 Image = "https://alex-adler.github.io/favicon/favicon.svg"
 Description = "Engineering for the near future"
+
+[[Websites]]
+Name = "Ray's Miscellany"
+Url = "https://brisray.com/"
+Image = "https://brisray.com/images/ray-disguise-938-20150721-web200.jpg"
+Description = "Stuff I'm interested in"
